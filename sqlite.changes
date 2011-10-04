@@ -1,0 +1,71 @@
+* Thu Jul 07 2011 Anas Nashif <anas.nashif@intel.com> - 3.7.7.1
+- Update to 3.7.7.1
+- Get rid of tcl dependency
+- Remove old and obsolete patches
+
+* Fri Jun 10 2011 Anas Nashif <anas.nashif@intel.com> - 3.7.5
+- Enable SQLITE_ENABLE_UNLOCK_NOTIFY
+
+* Fri May 27 2011 Anas Nashif <anas.nashif@intel.com> - 3.7.5
+- Update to 3.7.5
+
+* Fri Apr 15 2011 Maitrey Mishra <ext-maitrey.mishra@nokia.com> - 3.7.2
+- BMC#16184, Sqlite should be compiled with fts enabled so that FTS in Tracker is possible.
+
+* Mon Feb 24 2011 Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com> - 3.7.2
+- compile with SQLITE_OMIT_LOOKASIDE (BCM#13834)
+
+* Mon Oct 11 2010 Maitrey Mishra <ext-maitrey.mishra@nokia.com> - 3.7.2
+- Update to 3.7.2
+
+* Fri Jul 16 2010 Fathi Boudra <fathi.boudra@nokia.com> - 3.6.23.1
+- Update to 3.6.23.1
+- Update lemon snprintf patch
+- Improve libdl patch
+
+* Mon Jun 28 2010 Yi Yang <yi.y.yang@intel.com> - 3.6.22
+- Set bigger depth of the LALR(1) stack (BMC #3176)
+
+* Wed Feb 03 2010 Yi Yang <yi.y.yang@intel.com> - 3.6.22
+- Update to 3.6.22
+
+* Thu Dec 10 2009 Arjan van de Ven <arjan@linux.intel.com> 3.6.21
+- update to 3.6.21
+
+* Mon Aug 31 2009 Yi Yang <yi.y.yang@intel.com> 3.6.17
+- Update to 3.6.17
+
+* Tue Jun 23 2009 Ding Jian-feng <jian-feng.ding@intel.com> 3.6.15
+- Update to 3.6.15, needed by firefox3.5
+
+* Tue Apr 28 2009 Vivian Zhang <vivian.zhang@intel.com> 3.6.13
+- Update to 3.6.13
+- Drop upstreamed patch
+
+* Tue Mar 31 2009 Vivian Zhang <vivian.zhang@intel.com> 3.6.11
+- Update to 3.6.11
+- Drop upstreamed keywords-patch
+- Regenerate libdl patch
+- Add patch to fix missing backup.lo issue (#6311)
+
+* Sun Feb 15 2009 Anas Nashif <anas.nashif@intel.com> 3.6.10
+- upstream fix yum breakage caused by new keywords (rh#481189)
+
+* Sat Feb 7 2009 Arjan van de Ven <arjan@linux.intel.com> 3.6.10
+- Update to 3.6.10
+
+* Tue Dec 16 2008 Anas Nashif <anas.nashif@intel.com> 3.6.6.2
+- Fixed rpmlint errors in Summary tag
+
+* Tue Dec 09 2008 Anas Nashif <anas.nashif@intel.com> 3.6.6.2
+- Cleanup file lists after removing static libraries
+
+* Fri Dec 05 2008 Arjan van de Ven <arjan@linux.intel.com> 3.6.6.2
+- Upgrade to version 3.6.6.2
+
+* Wed Nov 19 2008 Vivian zhang <vivian.zhang@intel.com> 3.6.4
+- Update to 3.6.4
+
+* Wed Jul 23 2008 Vivian Zhang <vivian.zhang@intel.com>
+- Add %doc to man in %files
+
