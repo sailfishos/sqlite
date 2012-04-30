@@ -7,12 +7,12 @@
 
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.7.9
+Version:    3.7.11
 Release:    1
 Group:      Applications/Databases
 License:    Public Domain
 URL:        http://www.sqlite.org/download.html
-Source0:    http://www.sqlite.org/sqlite-autoconf-3070900.tar.gz
+Source0:    http://www.sqlite.org/sqlite-autoconf-3071100.tar.gz
 Source100:  sqlite.yaml
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -43,7 +43,7 @@ to install %{name}-devel.
 
 
 %prep
-%setup -q -n %{name}-autoconf-3070900
+%setup -q -n %{name}-autoconf-3071100
 
 # >> setup
 # << setup
