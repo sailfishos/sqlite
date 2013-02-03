@@ -7,12 +7,12 @@
 
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.7.11
+Version:    3.7.15.2
 Release:    1
 Group:      Applications/Databases
 License:    Public Domain
 URL:        http://www.sqlite.org/download.html
-Source0:    http://www.sqlite.org/sqlite-autoconf-3071100.tar.gz
+Source0:    http://www.sqlite.org/sqlite-autoconf-3071502.tar.gz
 Source100:  sqlite.yaml
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
