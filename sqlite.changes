@@ -1,3 +1,6 @@
+* Tue Feb 5 2013 Carsten Munk <carsten.munk@jollamobile.com> - 3.7.15.2
+- Fix .spec
+
 * Mon Feb 4 2013 Islam Amer <islam.amer@jollamobile.com> - 3.7.15.2
 - upgrade sqlite to 3.7.15.2
 - Previous version is known to be broken according to https://mail.gnome.org/archives/tracker-list/2012-October/msg00028.html

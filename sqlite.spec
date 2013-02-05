@@ -43,7 +43,7 @@ to install %{name}-devel.
 
 
 %prep
-%setup -q -n %{name}-autoconf-3071100
+%setup -q -n %{name}-autoconf-3071502
 
 # >> setup
 # << setup
