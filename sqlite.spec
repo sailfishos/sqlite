@@ -12,7 +12,7 @@ Release:    1
 Group:      Applications/Databases
 License:    Public Domain
 URL:        http://www.sqlite.org/download.html
-Source0:    http://www.sqlite.org/sqlite-autoconf-3071502.tar.gz
+Source0:    http://www.sqlite.org/sqlite-autoconf-3071700.tar.gz
 Source100:  sqlite.yaml
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -43,7 +43,7 @@ to install %{name}-devel.
 
 
 %prep
-%setup -q -n %{name}-autoconf-3071502
+%setup -q -n %{name}-autoconf-3071700
 
 # >> setup
 # << setup

@@ -1,3 +1,6 @@
+* Sat Jul 13 2013 Davide Bettio <davide.bettio@ispirata.com> - 3.7.17.0
+- upgrade sqlite to 3.7.17.0
+
 * Tue Feb 5 2013 Carsten Munk <carsten.munk@jollamobile.com> - 3.7.15.2
 - Fix .spec
 
