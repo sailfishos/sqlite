@@ -1,6 +1,6 @@
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.8.4.1
+Version:    3.8.11.1
 Release:    1
 Group:      Applications/Databases
 License:    Public Domain
