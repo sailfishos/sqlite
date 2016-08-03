@@ -1,6 +1,6 @@
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.8.11.1
+Version:    3.13.0
 Release:    1
 Group:      Applications/Databases
 License:    Public Domain
@@ -34,14 +34,36 @@ to install %{name}-devel.
 %setup -q -n %{name}-%{version}/%{name}
 
 %build
-export CFLAGS="$RPM_OPT_FLAGS -DSQLITE_ENABLE_COLUMN_METADATA=1 -DSQLITE_DISABLE_DIRSYNC=1 -DYYSTACKDEPTH=500 -DSQLITE_SECURE_DELETE -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE=1 -DSQLITE_SOUNDEX=1 -DNDEBUG -D_XOPEN_SOURCE=500 -DUSE_PREAD -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_ENABLE_ICU -Wall"
-export LDFLAGS="`icu-config --ldflags-libsonly`"
+export CFLAGS="$RPM_OPT_FLAGS \
+	-DSQLITE_ENABLE_COLUMN_METADATA=1 \
+	-DSQLITE_DISABLE_DIRSYNC=1 \
+	-DYYSTACKDEPTH=500 \
+	-DSQLITE_SECURE_DELETE=1 \
+	-DSQLITE_ENABLE_FTS4 \
+	-DSQLITE_ENABLE_FTS5 \
+	-DSQLITE_ENABLE_FTS3_PARENTHESIS \
+	-DSQLITE_ENABLE_JSON1 \
+	-DSQLITE_ENABLE_RTREE \
+	-DSQLITE_SOUNDEX=1 \
+	-DNDEBUG \
+	-D_XOPEN_SOURCE=500 \
+	-DSQLITE_ENABLE_DBSTAT_VTAB=1 \
+	-DUSE_PREAD \
+	-DSQLITE_ENABLE_UNLOCK_NOTIFY=1 \
+	-DSQLITE_ENABLE_ICU \
+	-DSQLITE_DEFAULT_CACHE_SIZE=500 \
+	-DSQLITE_DEFAULT_TEMP_CACHE_SIZE=125 \
+	-Wall \
+	-fno-strict-aliasing"
+	
+export LDFLAGS="-lm `icu-config --ldflags-libsonly`"
 
 %reconfigure --disable-static \
     --without-tcl \
     --disable-tcl \
     --enable-threadsafe \
-    --enable-threads-override-locks
+    --enable-threads-override-locks \
+    --enable-readline
 
 make %{?jobs:-j%jobs}
 
@@ -56,7 +78,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc README
+%doc README.txt
 %{_bindir}/*
 %{_libdir}/*.so.*
 
