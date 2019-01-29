@@ -30,6 +30,14 @@ This package contains the header files and development documentation
 for %{name}. If you like to develop programs using %{name}, you will need
 to install %{name}-devel.
 
+%package doc
+Summary:   Documentation for %{name}
+Group:     Documentation
+Requires:  %{name} = %{version}-%{release}
+
+%description doc
+Man page for %{name}.
+
 %prep
 %setup -q -n %{name}-%{version}/%{name}
 
@@ -65,7 +73,7 @@ export LDFLAGS="-lm `icu-config --ldflags-libsonly`"
     --enable-threads-override-locks \
     --enable-readline
 
-make %{?jobs:-j%jobs}
+make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
@@ -78,7 +86,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc README.txt
 %{_bindir}/*
 %{_libdir}/*.so.*
 
@@ -87,4 +94,7 @@ rm -rf %{buildroot}
 %{_includedir}/*.h
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
-%{_mandir}/man1/sqlite3.1.gz
+
+%files doc
+%defattr(-,root,root,-)
+%{_mandir}/man1/%{name}3.*
