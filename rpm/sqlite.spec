@@ -6,8 +6,6 @@ Group:      Applications/Databases
 License:    Public Domain
 URL:        http://www.sqlite.org/download.html
 Source0:    %{name}-%{version}.tar.gz
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
 BuildRequires:  readline-devel
 BuildRequires:  pkgconfig(icu-i18n)
 
@@ -23,7 +21,7 @@ are named to permit each to be installed on a single host
 %package devel
 Summary:    Development tools for the sqlite3 embeddable SQL database engine
 Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-libs = %{version}-%{release}
 
 %description devel
 This package contains the header files and development documentation
@@ -37,6 +35,15 @@ Requires:  %{name} = %{version}-%{release}
 
 %description doc
 Man page for %{name}.
+
+%package libs
+Summary:    SQlite shared library
+Group:      Applications/Databases
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
+Obsoletes:  %{name} < 3.13.0+git1
+%description libs
+This package contains the shared library for %{name}.
 
 %prep
 %setup -q -n %{name}-%{version}/%{name}
@@ -80,14 +87,13 @@ rm -rf %{buildroot}
 
 %make_install
 
-%post -p /sbin/ldconfig
+%post libs -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}/*
-%{_libdir}/*.so.*
 
 %files devel
 %defattr(-,root,root,-)
@@ -98,3 +104,7 @@ rm -rf %{buildroot}
 %files doc
 %defattr(-,root,root,-)
 %{_mandir}/man1/%{name}3.*
+
+%files libs
+%defattr(-,root,root,-)
+%{_libdir}/*.so.*
