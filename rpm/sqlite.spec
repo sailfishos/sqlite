@@ -8,6 +8,7 @@ URL:        http://www.sqlite.org/download.html
 Source0:    %{name}-%{version}.tar.gz
 BuildRequires:  readline-devel
 BuildRequires:  pkgconfig(icu-i18n)
+Requires:   %{name}-libs = %{version}-%{release}
 
 %description
 SQLite is a C library that implements an SQL database engine. A large
