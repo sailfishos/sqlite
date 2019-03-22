@@ -42,6 +42,10 @@ Summary:    SQlite shared library
 Group:      Applications/Databases
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
+# We need to ensure rpm is updated before sqlite-libs as this can break
+# the rpm during installation. Newer rpm's do not depend on this anymore.
+Conflicts:  rpm < 4.14.1+git8
+Requires(pre): rpm >= 4.14.1+git8
 Obsoletes:  %{name} < 3.13.0+git1
 %description libs
 This package contains the shared library for %{name}.
