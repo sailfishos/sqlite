@@ -1,12 +1,11 @@
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.13.0
+Version:    3.28.0
 Release:    1
 Group:      Applications/Databases
 License:    Public Domain
 URL:        http://www.sqlite.org/download.html
 Source0:    %{name}-%{version}.tar.gz
-BuildRequires:  readline-devel
 BuildRequires:  pkgconfig(icu-i18n)
 Requires:   %{name}-libs = %{version}-%{release}
 
@@ -54,6 +53,7 @@ This package contains the shared library for %{name}.
 %setup -q -n %{name}-%{version}/%{name}
 
 %build
+cd %{name}
 export CFLAGS="$RPM_OPT_FLAGS \
 	-DSQLITE_ENABLE_COLUMN_METADATA=1 \
 	-DSQLITE_DISABLE_DIRSYNC=1 \
@@ -79,11 +79,9 @@ export CFLAGS="$RPM_OPT_FLAGS \
 export LDFLAGS="-lm `icu-config --ldflags-libsonly`"
 
 %reconfigure --disable-static \
-    --without-tcl \
-    --disable-tcl \
-    --enable-threadsafe \
-    --enable-threads-override-locks \
-    --enable-readline
+	     --enable-threadsafe \
+	     --disable-readline
+
 
 make %{?_smp_mflags}
 
