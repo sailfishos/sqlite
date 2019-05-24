@@ -7,6 +7,8 @@ License:    Public Domain
 URL:        http://www.sqlite.org/download.html
 Source0:    %{name}-%{version}.tar.gz
 BuildRequires:  pkgconfig(icu-i18n)
+BuildRequires:  tcl, tcl-devel
+BuildRequires:  pkgconfig(zlib)
 Requires:   %{name}-libs = %{version}-%{release}
 
 %description
@@ -53,7 +55,6 @@ This package contains the shared library for %{name}.
 %setup -q -n %{name}-%{version}/%{name}
 
 %build
-cd %{name}
 export CFLAGS="$RPM_OPT_FLAGS \
 	-DSQLITE_ENABLE_COLUMN_METADATA=1 \
 	-DSQLITE_DISABLE_DIRSYNC=1 \
@@ -78,17 +79,19 @@ export CFLAGS="$RPM_OPT_FLAGS \
 	
 export LDFLAGS="-lm `icu-config --ldflags-libsonly`"
 
-%reconfigure --disable-static \
-	     --enable-threadsafe \
-	     --disable-readline
-
-
+mkdir ../build
+cd ../build
+../sqlite/configure  --disable-static \
+		     --enable-threadsafe \
+		     --disable-readline
 make %{?_smp_mflags}
+make sqlite3.c
+make test
 
 %install
 rm -rf %{buildroot}
-
-%make_install
+cd ../build
+make install
 
 %post libs -p /sbin/ldconfig
 
