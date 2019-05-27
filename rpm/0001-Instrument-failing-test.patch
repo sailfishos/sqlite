@@ -1,0 +1,132 @@
+From 0e9ae8c20514be150d3f97a467ef208edc022f6f Mon Sep 17 00:00:00 2001
+From: David Greaves <david@dgreaves.com>
+Date: Mon, 27 May 2019 10:00:48 +0100
+Subject: [PATCH] Instrument failing test
+
+Signed-off-by: David Greaves <david.greaves@jolla.com>
+---
+ test/walvfs.test | 27 ++++++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
+
+diff --git a/test/walvfs.test b/test/walvfs.test
+index cb8005c1c..ab7842e3c 100644
+--- a/test/walvfs.test
++++ b/test/walvfs.test
+@@ -324,14 +324,20 @@ puts "# WARNING: This next test takes around 12 seconds"
+ do_catchsql_test 6.2 {
+   INSERT INTO t1 VALUES(1);
+ } {1 {locking protocol}}
++puts "# WARNING: Did it"
+ 
+ #-------------------------------------------------------------------------
+ # Check that a checkpoint fails if it cannot get the CHECKPOINTER lock
+ #
++puts "# WARNING: reset_db"
+ reset_db
++puts "# WARNING: filter"
+ tvfs filter {}
++puts "# WARNING: close"
+ db close
++puts "# WARNING: vfs"
+ sqlite3 db test.db -vfs tvfs
++puts "# WARNING: test7"
+ do_execsql_test 7.0 {
+   PRAGMA auto_vacuum = 0;
+   PRAGMA page_size = 1024;
+@@ -343,7 +349,9 @@ do_execsql_test 7.0 {
+   INSERT INTO t1 SELECT randomblob(750) FROM s;
+ } {wal}
+ 
++puts "# WARNING: script xShmLock"
+ tvfs script xShmLock
++puts "# WARNING: filter xShmLock"
+ tvfs filter xShmLock
+ proc xShmLock {method file handle spec} {
+   if {$spec=="1 1 lock exclusive"} {
+@@ -351,6 +359,7 @@ proc xShmLock {method file handle spec} {
+   }
+   return SQLITE_OK
+ }
++puts "# WARNING: test 7.1"
+ 
+ do_execsql_test 7.1 {
+   PRAGMA wal_checkpoint
+@@ -360,10 +369,15 @@ do_execsql_test 7.1 {
+ # Check that the page cache is correctly flushed if a checkpointer using
+ # a version 2 VFS makes a checkpoint with an out-of-date cache.
+ #
++puts "# WARNING: reset_db"
+ reset_db
++puts "# WARNING: tvfs2"
+ testvfs tvfs2 -iversion 2
++puts "# WARNING: close"
+ db close
++puts "# WARNING: db tvfs2"
+ sqlite3 db test.db -vfs tvfs2
++puts "# WARNING: 8.0"
+ do_execsql_test 8.0 {
+   PRAGMA auto_vacuum = 0;
+   PRAGMA page_size = 1024;
+@@ -373,8 +387,10 @@ do_execsql_test 8.0 {
+   INSERT INTO t1 SELECT randomblob(75) FROM s;
+ } {wal}
+ 
++puts "# WARNING: 8.1"
+ do_execsql_test 8.1 { SELECT count(*) FROM t1 } {20}
+ 
++puts "# WARNING: 8.2"
+ do_test 8.2 {
+   sqlite3 db2 test.db -vfs tvfs2
+   execsql {
+@@ -383,16 +399,22 @@ do_test 8.2 {
+   db2 close
+ } {}
+ 
++puts "# WARNING: 8.3"
+ do_execsql_test 8.3 { 
+   PRAGMA wal_checkpoint;
+   SELECT count(*) FROM t1 
+ } {0 5 5 21}
++puts "# WARNING: delete"
+ tvfs2 delete
+ 
+ #-------------------------------------------------------------------------
++puts "# WARNING: reset"
+ reset_db
++puts "# WARNING: close"
+ db close
++puts "# WARNING: new test.db"
+ sqlite3 db test.db -vfs tvfs
++puts "# WARNING: 9.0"
+ do_execsql_test 9.0 {
+   PRAGMA auto_vacuum = 0;
+   PRAGMA page_size = 1024;
+@@ -402,6 +424,7 @@ do_execsql_test 9.0 {
+   INSERT INTO t1 SELECT randomblob(75) FROM s;
+ } {wal}
+ 
++puts "# WARNING: shmap"
+ sqlite3 db2 test.db -vfs tvfs
+ tvfs filter {xShmMap xShmLock}
+ tvfs script xShmMap
+@@ -418,6 +441,7 @@ proc xShmMap {method file handle args} {
+   }
+ }
+ 
++puts "# WARNING: 9.1"
+ do_test 9.1 {
+   catchsql { SELECT count(*) FROM t1 } db2
+ } {1 {disk I/O error}}
+@@ -425,5 +449,6 @@ do_test 9.1 {
+ db close
+ db2 close
+ tvfs delete
++puts "# WARNING: finish"
+ finish_test
+-
++puts "# WARNING: finished"
+
+base-commit: d331c7ab1fa42ab7bcd4e26cf8c60a9201621922
+-- 
+2.11.0
+
