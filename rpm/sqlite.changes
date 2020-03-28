@@ -28,9 +28,6 @@
 * Fri Apr 15 2011 Maitrey Mishra <ext-maitrey.mishra@nokia.com> - 3.7.2
 - BMC#16184, Sqlite should be compiled with fts enabled so that FTS in Tracker is possible.
 
-* Mon Feb 24 2011 Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com> - 3.7.2
-- compile with SQLITE_OMIT_LOOKASIDE (BCM#13834)
-
 * Mon Oct 11 2010 Maitrey Mishra <ext-maitrey.mishra@nokia.com> - 3.7.2
 - Update to 3.7.2
 
