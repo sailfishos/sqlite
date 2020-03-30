@@ -66,11 +66,7 @@ export CFLAGS="$RPM_OPT_FLAGS \
 	-DSQLITE_DISABLE_DIRSYNC=1 \
 	-DYYSTACKDEPTH=500 \
 	-DSQLITE_SECURE_DELETE=1 \
-	-DSQLITE_ENABLE_FTS4 \
-	-DSQLITE_ENABLE_FTS5 \
 	-DSQLITE_ENABLE_FTS3_PARENTHESIS \
-	-DSQLITE_ENABLE_JSON1 \
-	-DSQLITE_ENABLE_RTREE \
 	-DSQLITE_SOUNDEX=1 \
 	-DNDEBUG \
 	-D_XOPEN_SOURCE=500 \
@@ -87,6 +83,11 @@ export LDFLAGS="-lm `icu-config --ldflags-libsonly`"
 
 %configure  --disable-tcl \
 	    --disable-static \
+	    --enable-json1 \
+	    --enable-fts3 \
+	    --enable-fts4 \
+	    --enable-fts5 \
+	    --enable-rtree \
 	    --enable-threadsafe \
 	    --enable-readline
 
