@@ -1,3 +1,3 @@
 [submodule "sqlite"]
 	path = sqlite
-	url = https://git.sailfishos.org/mirror/sqlite
+	url = https://github.com/sailfishos-mirror/sqlite.git

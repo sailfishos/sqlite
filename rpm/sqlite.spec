@@ -3,7 +3,7 @@
 
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.33.0
+Version:    3.36.0
 Release:    1
 License:    Public Domain
 URL:        https://www.sqlite.org
@@ -118,12 +118,8 @@ export MALLOC_CHECK_=3
 rm test/csv01.test
 %endif
 
-%ifarch s390x ppc64
-rm test/fts3conf.test
-%endif
-
 make test
-%endif #with check
+%endif
 
 %post libs -p /sbin/ldconfig
 
