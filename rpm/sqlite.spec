@@ -24,10 +24,6 @@ BuildRequires:  tcl
 %endif
 Requires:   %{name}-libs = %{version}-%{release}
 
-# Ensure updates from pre-split work on multi-lib systems
-Obsoletes: %{name} < 3.11.0-1
-Conflicts: %{name} < 3.11.0-1
-
 %description
 SQLite is a C library that implements an SQL database engine. A large
 subset of SQL92 is supported. A complete database is stored in a
@@ -58,11 +54,9 @@ Man page for %{name}.
 Summary: Shared library for the sqlite3 embeddable SQL database engine
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
-# We need to ensure rpm is updated before sqlite-libs as this can break
-# the rpm during installation. Newer rpm's do not depend on this anymore.
-Conflicts:  rpm < 4.14.1+git8
+# We need to ensure rpm is updated before sqlite-libs.
+# 4.3.0 release had already 4.16.1.3 version of the rpm.
 Requires(pre): rpm >= 4.14.1+git8
-Obsoletes:  %{name} < 3.13.0+git1
 
 %description libs
 This package contains the shared library for %{name}.
