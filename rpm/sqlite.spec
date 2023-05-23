@@ -121,6 +121,7 @@ make test
 
 %files
 %defattr(-,root,root,-)
+%license LICENSE.md
 %{_bindir}/sqlite3
 
 %files libs
