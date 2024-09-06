@@ -3,7 +3,7 @@
 
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.40.1
+Version:    3.46.1
 Release:    1
 License:    Public Domain
 URL:        https://www.sqlite.org
@@ -120,22 +120,18 @@ make test
 %postun libs -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
 %license LICENSE.md
 %{_bindir}/sqlite3
 
 %files libs
-%defattr(-,root,root,-)
 %license LICENSE.md
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/*.h
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 
 %files doc
-%defattr(-,root,root,-)
 %doc README.md
 %{_mandir}/man1/%{name}3.*
