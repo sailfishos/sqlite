@@ -1,0 +1,13 @@
+diff --git a/autosetup/sqlite-config.tcl b/autosetup/sqlite-config.tcl
+index c09b8583f8..af159a02a0 100644
+--- a/autosetup/sqlite-config.tcl
++++ b/autosetup/sqlite-config.tcl
+@@ -553,7 +553,7 @@ proc sqlite-check-common-system-deps {} {
+   #
+   # Check for needed/wanted functions
+   cc-check-functions gmtime_r isnan localtime_r localtime_s \
+-    malloc_usable_size strchrnul usleep utime pread pread64 pwrite pwrite64
++    strchrnul usleep utime pread pread64 pwrite pwrite64
+ 
+   set ldrt ""
+   # Collapse funcs from librt into LDFLAGS_RT.

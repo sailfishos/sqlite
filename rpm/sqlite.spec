@@ -3,12 +3,12 @@
 
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.46.1
+Version:    3.49.2
 Release:    1
 License:    Public Domain
-URL:        https://www.sqlite.org
+URL:        https://github.com/sailfishos/sqlite
 Source0:    %{name}-%{version}.tar.bz2
-Patch0:     sqlite-3.12.2-no-malloc-usable-size.patch
+Patch0:     sqlite-3.49.2-no-malloc-usable-size.patch
 BuildRequires:  autoconf
 BuildRequires:  libtool
 BuildRequires:  pkgconfig(readline)
@@ -81,17 +81,20 @@ export CFLAGS="$RPM_OPT_FLAGS $RPM_LD_FLAGS \
 
 export LDFLAGS="-lm `icu-config --ldflags-libsonly`"
 
-%reconfigure \
+./configure --prefix=/usr \
+    --exec-prefix=%{_exec_prefix} \
+    --includedir=%{_includedir} \
+    --libdir=%{_libdir} \
     --disable-static \
     --disable-debug \
     --disable-tcl \
-    --enable-json1 \
     --enable-fts3 \
     --enable-fts4 \
     --enable-fts5 \
     --enable-rtree \
     --enable-threadsafe \
-    --enable-readline
+    --enable-readline \
+    --soname=legacy
 
 %make_build
 
