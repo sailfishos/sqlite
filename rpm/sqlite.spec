@@ -3,12 +3,11 @@
 
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.49.2
+Version:    3.50.4
 Release:    1
 License:    Public Domain
 URL:        https://github.com/sailfishos/sqlite
 Source0:    %{name}-%{version}.tar.bz2
-Patch0:     sqlite-3.49.2-no-malloc-usable-size.patch
 BuildRequires:  autoconf
 BuildRequires:  libtool
 BuildRequires:  pkgconfig(readline)
