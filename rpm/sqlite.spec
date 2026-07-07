@@ -3,7 +3,7 @@
 
 Name:       sqlite
 Summary:    Library that implements an embeddable SQL database engine
-Version:    3.50.4
+Version:    3.53.3
 Release:    1
 License:    Public Domain
 URL:        https://github.com/sailfishos/sqlite
