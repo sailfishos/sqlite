@@ -91,6 +91,7 @@ export LDFLAGS="-lm `icu-config --ldflags-libsonly`"
     --enable-fts4 \
     --enable-fts5 \
     --enable-rtree \
+    --enable-carray \
     --enable-threadsafe \
     --enable-readline \
     --soname=legacy
